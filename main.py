@@ -5,10 +5,7 @@ import cryptomath
 yell = '\u001b[33;1m'
 reset = '\u001b[0m'
 red = '\u001b[31m'
-pink = '\u001b[35;1m'
-              
-
-
+pink = '\u001b[35;1m'           
 
 class poll:
     def __init__(self):
@@ -164,11 +161,10 @@ class poll_machine:
         print("\u001b[33;1mHash(idNumber): \u001b[0m", idNumber_hash, end="\n\n")
 
         print("\u001b[35;1m(g) Pemilih membuat tanda tangan digital menggunakan s=(message_hash)^(private key)modulo n \u001b[0m",  end="\n\n")
-        s=pow(idNumber_hash, private_key, n) # ERR2
+        s=pow(idNumber_hash, private_key, n) 
         print("\u001b[33;1mTanda Tangan Digital, s: \u001b[0m", s, end="\n\n")
         a=0
 
-        ## verification:
         print("\u001b[35;1m(h) Tanda Tangan Digital, s, dan pesan asli, idNumber (tanpa hash) disediakan untuk Verifier \u001b[0m",  end="\n\n")
         print("\u001b[35;1m(i) Verifier menghitung dan membandingkan nilai-nilai \u001b[0m",'\n\n' ,"    1. Pesan yang didekripsi dan", '\n\n' ,"    2. Hash(idNumber)",'\n\n' ,"\u001b[35;1mJika kedua nilai ini sama, maka tanda tangan digital telah terautentikasi \u001b[0m",  end="\n\n")
         concat_message = str(idNumber) 
