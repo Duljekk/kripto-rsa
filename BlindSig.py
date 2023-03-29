@@ -15,18 +15,18 @@ class Signer:
         print('\n\n') 
         for i in range(40):
             print(" ", end="")
-        print("\u001b[1mTanda Tangan Buta dan Skema Pemungutan Suara (menggunakan RSA)\u001b[0m")
+        print("\u001b[1mBlinded signature dan Skema Pemungutan Suara (menggunakan RSA)\u001b[0m")
         for i in range(100):
             print("-", end="")
         print()    
         for i in range(50):
             print(" ", end="")
-        print("\u001b[31mMODUL 1\u001b[37m")
+        print("\u001b[31mLangkah 1\u001b[37m")
         for i in range(100):
             print("-", end="")
         print('\n\n')    
       
-        print("\u001b[32;1m1. Otoritas Penandatanganan Membuat Informasi Publik dan Pribadi:\u001b[0m", end='\n\n')
+        print("\u001b[32;1m1. Admin  Membuat key private dan Pribadi:\u001b[0m", end='\n\n')
         print("\u001b[35;1m(a) Menghasilkan p dan q acak\u001b[0m", end='\n\n')
         print("\u001b[33;1mp: \u001b[0m", p, end='\n\n')
         print("\u001b[33;1mq: \u001b[0m", q, end='\n\n')
@@ -51,7 +51,7 @@ class Signer:
         if cryptomath.gcd(e, phi)==1:
             v=True
         print("Verification Status: ", v, "\u001b[0m", end='\n\n')
-        print("\u001b[35;1m(d) Menghitung d, di mana d adalah inversi dari e modulo ϕ(n)\u001b[0m", end='\n\n')
+        print("\u001b[35;1m(d) Menghitung d, di mana d adalah inversi dari e Langkaho ϕ(n)\u001b[0m", end='\n\n')
         d = cryptomath.findModInverse(e, phi)
        
         
@@ -64,9 +64,9 @@ class Signer:
             v=True
         print("\u001b[33;1mStatus Verifikasi: \u001b[0m", v, end='\n\n')
         
-        print("\u001b[35;1m(e) Dipublikasikan ke PUBLIK: (n,e) dan kunci publik dan kunci pribadi yang dihitung secara berturut-turut adalah:\u001b[0m", end='\n\n')
-        print("\u001b[33;1mKunci Publik (n, e): \u001b[0m", "(",n,", " ,e,")", end='\n\n')
-        print("\u001b[33;1mKunci Pribadi (n, d):  \u001b[0m", "(",n,", " ,d,")", end='\n\n')
+        print("\u001b[35;1m(e) Diprivateasikan ke private: (n,e) dan key private dan key pribadi yang dihitung secara berturut-turut adalah:\u001b[0m", end='\n\n')
+        print("\u001b[33;1mkey private (n, e): \u001b[0m", "(",n,", " ,e,")", end='\n\n')
+        print("\u001b[33;1mkey Pribadi (n, d):  \u001b[0m", "(",n,", " ,d,")", end='\n\n')
         publicInfo = {"n" : n, "e": e}
         privateInfo = {"n" : n, "d": d}
     
@@ -83,18 +83,18 @@ class Signer:
         print()    
         for i in range(50):
             print(" ", end="")
-        print("\u001b[31mMODUL 3\u001b[37m")
+        print("\u001b[31mLangkah 3\u001b[37m")
         for i in range(100):
             print("-", end="")
         print('\n\n')   
         
-        print("\u001b[32;1m3. Otoritas Tanda Tangan Memberikan Otorisasi Pemilih\u001b[0m", end='\n\n')
-        print("\u001b[35;1m(a) Otoritas tanda tangan menerima m'\u001b[0m", end='\n\n')
-        print("\u001b[35;1m(b) Otoritas tanda tangan memverifikasi apakah pemilih memenuhi syarat untuk memberikan suara\u001b[0m", end='\n\n')
+        print("\u001b[32;1m3. Admin  Memberikan Otorisasi Pemilih\u001b[0m", end='\n\n')
+        print("\u001b[35;1m(a) Admin  menerima m'\u001b[0m", end='\n\n')
+        print("\u001b[35;1m(b) Admin  memverifikasi apakah pemilih memenuhi syarat untuk memberikan suara\u001b[0m", end='\n\n')
         if eligible == "y":
-            print("\u001b[35;1m(c) Jika pemilih memenuhi syarat, otoritas tanda tangan menandatangani surat suara: sign = ((pesan yang dibutakan)^d) mod n = ((m* (r^e))^d) mod n = (m^d * r^(ed)) mod n = (m^d * r^1) mod n = (m^d * r) mod n(dengan d adalah kunci pribadi otoritas tanda tangan)\u001b[0m", end='\n\n')
+            print("\u001b[35;1m(c) Jika pemilih memenuhi syarat, Admin  menandatangani surat suara: sign = ((blind signature)^d) mod n = ((m* (r^e))^d) mod n = (m^d * r^(ed)) mod n = (m^d * r^1) mod n = (m^d * r) mod n(dengan d adalah key pribadi Admin )\u001b[0m", end='\n\n')
             s= pow(message, self.privateKey['d'], self.publicKey['n']) #important # ERR1
-            print("\u001b[33;1mTanda Tangan oleh Otoritas Tanda Tangan: \u001b[0m", s, end='\n\n')
+            print("\u001b[33;1mTanda Tangan oleh Admin Tanda Tangan: \u001b[0m", s, end='\n\n')
             print("\u001b[35;1m(d) Mengirimkan s' kembali ke pemilih\u001b[0m", end='\n\n')
             return s
         else:
@@ -130,14 +130,14 @@ class Voter:
         print()    
         for i in range(50):
             print(" ", end="")
-        print("\u001b[31mMODUL 4\u001b[37m")
+        print("\u001b[31mLangkah 4\u001b[37m")
         for i in range(100):
             print("-", end="")
         print('\n\n')
         print("\u001b[32;1m4. Pemilih membuka pembungkusan suara\u001b[0m", end='\n\n')
         print("\u001b[35;1m(a) Menerima s'\u001b[0m", end='\n\n')
         
-        print("\u001b[35;1m(g) Menghitung rInv, di mana rInv adalah kebalikan dari r modulo n. r akan digunakan oleh pemilih untuk membuka pembungkusan pesan yang dibutakan.\u001b[0m", end='\n\n')
+        print("\u001b[35;1m(g) Menghitung rInv, di mana rInv adalah kebalikan dari r Langkaho n. r akan digunakan oleh pemilih untuk membuka blinded message.\u001b[0m", end='\n\n')
         rInv = cryptomath.findModInverse(self.r, n) # ERR3
         print("rInv: ", rInv)
          
@@ -156,8 +156,8 @@ class Voter:
     
     
     def blindMessage(self, m, n, e):
-         print("\u001b[35;1m(e) Menghitung pesan tersembunyi (blinded message): m' = (m* (r^e)) mod n (di mana n dan e diketahui oleh publik)u001b[0m", end='\n\n')
-         blindMessage = (m * pow(self.r, e, n)) % n  #returns r to the power of e, modulus n.
+         print("\u001b[35;1m(e) Menghitung pesan tersembunyi (blinded message): m' = (m* (r^e)) mod n (di mana n dan e diketahui oleh private)u001b[0m", end='\n\n')
+         blindMessage = (m * pow(self.r, e, n)) % n  #returns r to the power of e, Langkahus n.
          print("\u001b[33;1mBlinded Message: \u001b[0m", blindMessage)
          return blindMessage
          
@@ -169,8 +169,8 @@ class Voter:
 def verifySignature(message, randNum, signature, publicE, publicN):
     ballot= pow(signature, publicE, publicN) #decrypting, it gets back the message_hash
     verificationStatus = (int(hashlib.sha256((str(message) + str(randNum)).encode('utf-8')).hexdigest(),16) == ballot)
-    print("\u001b[35;1mPesan hash terenkripsi/ditandatangani dideskripsi dengan kunci publik otoritas yang telah menandatanganinya (s^e) mod n = (m^d)^e mod n = (m^1) mod n = m mod n = m : \u001b[0m","\n", ballot, end="\n\n")
+    print("\u001b[35;1mPesan hash terenkripsi/ditandatangani dideskripsi dengan 5 private Admin yang telah menandatanganinya (s^e) mod n = (m^d)^e mod n = (m^1) mod n = m mod n = m : \u001b[0m","\n", ballot, end="\n\n")
     print("\u001b[35;1mHitung hash dari pesan gabungan sebagai hash(pesan gabungan): \n \u001b[0m" ,int(hashlib.sha256((str(message) + str(randNum)).encode('utf-8')).hexdigest(),16), end='\n\n')
-    print("\u001b[31mJika kedua nilai di atas sama, maka dapat dipastikan bahwa pesan tersebut memang telah disetujui oleh otoritas yang menandatanganinya. \u001b[0m", end='\n\n')
+    print("\u001b[31mJika kedua nilai di atas sama, maka dapat dipastikan bahwa pesan tersebut memang telah disetujui oleh Admin yang menandatanganinya. \u001b[0m", end='\n\n')
     decoded_message = message
     return verificationStatus, decoded_message   

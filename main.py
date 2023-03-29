@@ -31,7 +31,7 @@ class poll:
        print()    
        for i in range(50):
             print(" ", end="")
-       print("\u001b[31mMODUL 2\u001b[37m")
+       print("\u001b[31mLangkah 2\u001b[37m")
        for i in range(100):
             print("-", end="")
        print('\n\n')    
@@ -57,11 +57,11 @@ class poll:
           print("\u001b[33;1mPesan buta(Blinded message): \u001b[0m" + str(blindMessage))
        print()
        
-       print("\u001b[35;1m(f) Mengirimkan m' (blinded message) ke otoritas tertanda\u001b[0m")
+       print("\u001b[35;1m(f) Mengirimkan m' (blinded message) ke admin \u001b[0m")
        signedBlindMessage = self.signer.signMessage(blindMessage, voter.getEligibility())
  
        if signedBlindMessage == None:
-           print("\u001b[31;1mPEMILIH TIDAK MEMENUHI SYARAT....VOTE TIDAK DIIZINKAN!\u001b[0m")
+           print("\u001b[31;1m Pemilih tidak memenuhi syarat.\u001b[0m")
        else:
            print("\u001b[33;1mBlinded message yang ditandatangani: \u001b[0m" + str(signedBlindMessage))
            print()
@@ -77,16 +77,16 @@ class poll:
             
             
            
-           print("\u001b[31mMODUL 5\u001b[37m")
+           print("\u001b[31mLangkah 5\u001b[37m")
            for i in range(100):
               print("-", end="")
            print('\n\n')
             
            print("\u001b[32;1m5. Surat Suara Diterima dan Verifikasi \u001b[0m", end='\n\n')
            print("\u001b[35;1mSuara pemilih dalam surat suara akan terdiri dari hal-hal berikut: \u001b[0m", end='\n\n')
-           print("\u001b[33;1m(a) Suara pemilih digabungkan dengan angka x: \u001b[0m",concat_message)
-           print()
-           print("\u001b[33;1m(b) Hash dari suara pemilih yang digabungkan ditandatangani oleh otoritas, yang pada dasarnya adalah pesan terhash yang dienkripsi dengan kunci privat otoritas tanda tangan (m^d) modulo n: \u001b[0m",signedMessage)
+           print("\u001b[33;1m(a) Suara pemilih digabungkan dengan sebuah nilai x: \n\u001b[0m",concat_message)
+           
+           print("\u001b[33;1m(b) Hash dari suara pemilih yang digabungkan ditandatangani oleh admin, yang pada dasarnya adalah pesan terhash yang dienkripsi dengan key privat admin tanda tangan (m^d) modulo n: \u001b[0m",signedMessage)
            print()
            verificationStatus, decoded_message = bs.verifySignature(message, x ,signedMessage, self.e, self.n)
            
@@ -118,7 +118,7 @@ class poll_machine:
         print()    
         for i in range(30):
             print(" ", end="")
-        print("\u001b[31m RSA (Rivest–Shamir–Adleman) Encryption \u001b[0m")
+        print("\u001b[31m RSA  Encryption \u001b[0m")
         for i in range(100):
             print("-", end="")
         print('\n\n')    
