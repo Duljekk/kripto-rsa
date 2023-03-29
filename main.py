@@ -153,8 +153,17 @@ class poll_machine:
         private_key = cryptomath.findModInverse(public_key, phi)     
         print("\u001b[33;1md: \u001b[0m",private_key, end='\n\n')
 
-        print("\u001b[32;1mMasukkan Nomor id: \u001b[0m", end="\n\n")
-        idNumber=int(input())
+        print("\u001b[32;1mMasukkan Nomor NRP: \u001b[0m", end="\n\n")
+        while True:
+            try:
+                idNumber=int(input())
+                if len(str(idNumber)) == 10:
+                    break
+                else:
+                    print("Nomor NRP harus memiliki 10 digit. Silakan coba lagi.")
+            except ValueError:
+                print("Input tidak valid. Masukkan nomor NRP yang valid.")
+            
         concat_message = str(idNumber) 
         print("\n\n")
 
