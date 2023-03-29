@@ -1,6 +1,5 @@
 import cryptomath, random, hashlib
 
-# n has to be greater than m otherwise lossy message
 class Signer:
     
     def __init__(self):
@@ -8,7 +7,6 @@ class Signer:
     
     
     def generateInformation(self):
-        # Generates public and private keys
         p = cryptomath.findPrime()
         q = cryptomath.findPrime()
         phi = (p - 1)*(q - 1)
