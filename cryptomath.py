@@ -1,8 +1,6 @@
-# Cryptomath Module
 import random
 
 def gcd(a, b):
-    # Returns the GCD of positive integers a and b using the Euclidean Algorithm.
     if a>b:
         x, y = a, b
     else:
@@ -14,8 +12,7 @@ def gcd(a, b):
         y = temp
     return x
 
-def extendedGCD(a,b): #used to find mod inverse
-    # Returns integers u, v such that au + bv = gcd(a,b).
+def extendedGCD(a,b):
     x, y = a, b
     u1, v1 = 1, 0
     u2, v2 = 0, 1
@@ -30,14 +27,12 @@ def extendedGCD(a,b): #used to find mod inverse
     return (u1, v1)
 
 def findModInverse(a, m):
-    # Returns the inverse of a modulo m, if it exists.
     if gcd(a,m) != 1:
         return None
     u, v = extendedGCD(a,m)
     return u % m
 
 def RabinMiller(n): 
-    # Applies the probabilistic Rabin-Miller test for primality.
     if n < 2:
         return False
     if n == 2:
@@ -49,8 +44,7 @@ def RabinMiller(n):
     while(d % 2 == 0):
         s += 1
         d = d // 2
-    # At this point n - 1 = 2^s*d with d odd.
-    # Try fifty times to prove that n is composite.
+
     for i in range(50):
         a = random.randint(2, n - 1)
         if gcd(a, n) != 1:
@@ -71,7 +65,6 @@ def RabinMiller(n):
             
 
 def isPrime(n): 
-    # Determines whether a positive integer n is composite or probably prime.
     if n < 2:
         return False
     smallPrimes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
@@ -88,23 +81,18 @@ def isPrime(n):
                    797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863,
                    877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953,
                    967, 971, 977, 983, 991, 997]
-    # See if n is a small prime.
     if n in smallPrimes:
         return True
-    # See if n is divisible by a small prime.
     for p in smallPrimes:
         if n % p == 0:
             return False
-    # Apply Fermat test for compositeness.
     for base in [2,3,5,7,11]:
         if pow(base, n - 1, n) != 1:
             return False
-    # Apply Rabin-Miller test.
     return RabinMiller(n)
 
 
 def findPrime(bits=256, tries=200): 
-    # Find a prime with the given number of bits.
     x = 2**(bits - 1)
     y = 2*x
     for i in range(tries):

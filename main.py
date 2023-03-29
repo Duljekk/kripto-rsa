@@ -103,7 +103,7 @@ class poll_machine:
         self.p = poll()
         print("\u001b[32;1mMasukkan pilihan Anda\u001b[0m")
         print()
-        print("(1) Apple     (2) Ball      (3) Rat      (4) Avengers    (5) Elephant")
+        print("(1) Apel     (2) Mangga      (3) Durian      (4) Nanas    (5) Stroberi")
         poll_=int(input())
         print()
         
