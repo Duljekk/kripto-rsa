@@ -156,35 +156,35 @@ class poll_machine:
         print("\u001b[32;1mMasukkan Nomor NRP: \u001b[0m", end="\n\n")
         while True:
             try:
-                idNumber=int(input())
-                if len(str(idNumber)) == 10:
+                NRP=int(input())
+                if len(str(NRP)) == 10:
                     break
                 else:
                     print("Nomor NRP harus memiliki 10 digit. Silakan coba lagi.")
             except ValueError:
                 print("Input tidak valid. Masukkan nomor NRP yang valid.")
             
-        concat_message = str(idNumber) 
+        concat_message = str(NRP) 
         print("\n\n")
 
-        print("\u001b[35;1m(f) Melakukan hash pada pesan (di sini, pesannya adalah idNumber) \u001b[0m",  end="\n\n")
-        idNumber_hash = hashlib.sha256(concat_message.encode('utf-8')).hexdigest()
-        idNumber_hash = int(idNumber_hash,16)
-        print("\u001b[33;1mHash(idNumber): \u001b[0m", idNumber_hash, end="\n\n")
+        print("\u001b[35;1m(f) Melakukan hash pada pesan (di sini, pesannya adalah NRP) \u001b[0m",  end="\n\n")
+        NRP_hash = hashlib.sha256(concat_message.encode('utf-8')).hexdigest()
+        NRP_hash = int(NRP_hash,16)
+        print("\u001b[33;1mHash(NRP): \u001b[0m", NRP_hash, end="\n\n")
 
         print("\u001b[35;1m(g) Pemilih membuat tanda tangan digital menggunakan s=(message_hash)^(private key)modulo n \u001b[0m",  end="\n\n")
-        s=pow(idNumber_hash, private_key, n) # ERR2
+        s=pow(NRP_hash, private_key, n) # ERR2
         print("\u001b[33;1mTanda Tangan Digital, s: \u001b[0m", s, end="\n\n")
         a=0
 
         ## verification:
-        print("\u001b[35;1m(h) Tanda Tangan Digital, s, dan pesan asli, idNumber (tanpa hash) disediakan untuk Verifier \u001b[0m",  end="\n\n")
-        print("\u001b[35;1m(i) Verifier menghitung dan membandingkan nilai-nilai \u001b[0m",'\n\n' ,"    1. Pesan yang didekripsi dan", '\n\n' ,"    2. Hash(idNumber)",'\n\n' ,"\u001b[35;1mJika kedua nilai ini sama, maka tanda tangan digital telah terautentikasi \u001b[0m",  end="\n\n")
-        concat_message = str(idNumber) 
+        print("\u001b[35;1m(h) Tanda Tangan Digital, s, dan pesan asli, NRP (tanpa hash) disediakan untuk Verifier \u001b[0m",  end="\n\n")
+        print("\u001b[35;1m(i) Verifier menghitung dan membandingkan nilai-nilai \u001b[0m",'\n\n' ,"    1. Pesan yang didekripsi dan", '\n\n' ,"    2. Hash(NRP)",'\n\n' ,"\u001b[35;1mJika kedua nilai ini sama, maka tanda tangan digital telah terautentikasi \u001b[0m",  end="\n\n")
+        concat_message = str(NRP) 
         print("\u001b[35;1m(j) Hash dari pesan dihitung: \u001b[0m",  end="\n\n")
         verification_hash= hashlib.sha256(concat_message.encode('utf-8')).hexdigest()
         verification_hash = int(verification_hash,16)
-        print("\u001b[33;1mHash(idNumber): \u001b[0m", verification_hash, end="\n\n")
+        print("\u001b[33;1mHash(NRP): \u001b[0m", verification_hash, end="\n\n")
         
         print("\u001b[35;1m(k) Mendekripsi pesan(tanpa Hash) menggunakan (tanda_tangan_digital s)^(public key)mod n = (message_hash)^((private key)*(public key))mod n = (message_hash)^1 mod n = (message_hash): \u001b[0m", end='\n\n')
         decrypted_message = pow(s, public_key, n)
