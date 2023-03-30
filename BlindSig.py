@@ -64,7 +64,7 @@ class Signer:
             v=True
         print("\u001b[33;1mStatus Verifikasi: \u001b[0m", v, end='\n\n')
         
-        print("\u001b[35;1m(e) Diprivateasikan ke private: (n,e) dan key private dan key pribadi yang dihitung secara berturut-turut adalah:\u001b[0m", end='\n\n')
+        print("\u001b[35;1m(e) Dibuat menjadi private: (n,e) dan key private dan key pribadi yang dihitung secara berturut-turut adalah:\u001b[0m", end='\n\n')
         print("\u001b[33;1mkey private (n, e): \u001b[0m", "(",n,", " ,e,")", end='\n\n')
         print("\u001b[33;1mkey Pribadi (n, d):  \u001b[0m", "(",n,", " ,d,")", end='\n\n')
         publicInfo = {"n" : n, "e": e}
